@@ -1,0 +1,17 @@
+def are_anagrams(string1, string2):
+    # Remove spaces and convert to lowercase
+    string1 = string1.replace(" ", "").lower()
+    string2 = string2.replace(" ", "").lower()
+    
+    # Check if the sorted characters of both strings are equal
+    return sorted(string1) == sorted(string2)
+
+# Get input from user
+string1 = input("Enter the first string: ")
+string2 = input("Enter the second string: ")
+
+# Check if they are anagrams and print the result
+if are_anagrams(string1, string2):
+    print("The strings are anagrams.")
+else:
+    print("The strings are not anagrams.")
