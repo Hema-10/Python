@@ -1,0 +1,23 @@
+def count_characters(string):
+    # Convert the string to lowercase
+    string = string.lower()
+    
+    # Create a dictionary to store character counts
+    char_count = {}
+    
+    # Count the occurrences of each character
+    for char in string:
+        if char.isalpha():
+            if char in char_count:
+                char_count[char] += 1
+            else:
+                char_count[char] = 1
+    
+    return char_count
+
+# Get input from user
+string = input("Enter a string: ")
+
+# Call the function and print the result
+result = count_characters(string)
+print("Character Counts:", result)
