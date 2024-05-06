@@ -1,0 +1,17 @@
+def generate_email(first_name, last_name):
+    # Convert names to lowercase and replace spaces with dots
+    first_name = first_name.lower().replace(" ", "")
+    last_name = last_name.lower().replace(" ", "")
+    
+    # Construct the email address
+    email = f"{first_name}.{last_name}@example.com"
+    
+    return email
+
+# Get input from user
+first_name = input("Enter your first name: ")
+last_name = input("Enter your last name: ")
+
+# Call the function and print the email address
+email_address = generate_email(first_name, last_name)
+print("Email Address:", email_address)
