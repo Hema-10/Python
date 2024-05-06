@@ -1,0 +1,13 @@
+def reverse_string(string):
+    reversed_string = ""
+    # Iterate over the string from the end to the beginning
+    for i in range(len(string) - 1, -1, -1):
+        reversed_string += string[i]
+    return reversed_string
+
+# Get input from user
+input_string = input("Enter a string: ")
+
+# Call the function and print the reversed string
+reversed_string = reverse_string(input_string)
+print("Reversed String:", reversed_string)
