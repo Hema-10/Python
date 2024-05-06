@@ -1,0 +1,24 @@
+import re
+
+def longest_word(sentence):
+    # Remove punctuation and split the sentence into words
+    words = re.findall(r'\w+', sentence)
+    
+    # Initialize variables to store the longest word and its length
+    longest = ""
+    longest_length = 0
+    
+    # Iterate through each word to find the longest one
+    for word in words:
+        if len(word) > longest_length:
+            longest = word
+            longest_length = len(word)
+    
+    return longest
+
+# Get input from user
+sentence = input("Enter a sentence: ")
+
+# Call the function and print the longest word
+longest = longest_word(sentence)
+print("Longest Word:", longest)
