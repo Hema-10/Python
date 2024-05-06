@@ -1,0 +1,16 @@
+import re
+
+def is_valid_palindrome(sentence):
+    # Remove non-alphanumeric characters and convert to lowercase
+    cleaned_sentence = re.sub(r'[^a-zA-Z0-9]', '', sentence.lower())
+    # Check if the cleaned sentence is equal to its reverse
+    return cleaned_sentence == cleaned_sentence[::-1]
+
+# Get input from user
+sentence = input("Enter a sentence: ")
+
+# Check if it's a valid palindrome and print the result
+if is_valid_palindrome(sentence):
+    print("The sentence is a valid palindrome.")
+else:
+    print("The sentence is not a valid palindrome.")
