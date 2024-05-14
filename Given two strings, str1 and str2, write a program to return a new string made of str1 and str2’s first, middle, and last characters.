@@ -1,0 +1,23 @@
+def combine_first_middle_last(str1, str2):
+    # Function to get the first, middle, and last characters of a string
+    def get_first_middle_last(string):
+        length = len(string)
+        if length == 0:
+            return ""
+        elif length == 1:
+            return string
+        elif length == 2:
+            return string[0] + string[-1]
+        else:
+            middle_index = length // 2
+            return string[0] + string[middle_index] + string[-1]
+
+    result_str1 = get_first_middle_last(str1)
+    result_str2 = get_first_middle_last(str2)
+
+    return result_str1 + result_str2
+
+str1 = input("Enter the first string: ")
+str2 = input("Enter the second string: ")
+result = combine_first_middle_last(str1, str2)
+print("Result:", result)
