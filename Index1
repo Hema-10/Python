@@ -1,0 +1,11 @@
+def get_first_middle_last(string):
+    length = len(string)
+    if length < 3:
+        return "String is too short"
+    else:
+        middle_index = length // 2
+        return string[0] + string[middle_index] + string[-1]
+
+input_string = input("Enter a string: ")
+result = get_first_middle_last(input_string)
+print("Result:", result)
