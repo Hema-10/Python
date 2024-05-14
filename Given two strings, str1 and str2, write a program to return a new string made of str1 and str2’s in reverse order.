@@ -1,0 +1,14 @@
+def reverse_combine(str1, str2):
+    # Reverses a string
+    def reverse_string(string):
+        return string[::-1]
+
+    reversed_str1 = reverse_string(str1)
+    reversed_str2 = reverse_string(str2)
+
+    return reversed_str1 + reversed_str2
+
+str1 = input("Enter the first string: ")
+str2 = input("Enter the second string: ")
+result = reverse_combine(str1, str2)
+print("Result:", result)
