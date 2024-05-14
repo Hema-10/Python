@@ -1,0 +1,8 @@
+def append_middle(str1, str2):
+    middle_index = len(str1) // 2
+    return str1[:middle_index] + str2 + str1[middle_index:]
+
+str1 = input("Enter the first string: ")
+str2 = input("Enter the second string: ")
+result = append_middle(str1, str2)
+print("Result:", result)
