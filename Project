@@ -1,0 +1,39 @@
+from tkinter import *
+tom=Tk()
+tom.title("AIML")
+tom.geometry("500x500")
+tom.configure(bg="skyblue")
+sample1=IntVar()
+text1=IntVar()
+text2=IntVar()
+def hello():
+    a=text1.get()
+    b=text2.get()
+    sample1.set(a+b)
+def hello1():
+    a=text1.get()
+    b=text1.get()
+    sample1.set(a*b)
+def hello2():
+    a=text1.get()
+    b=text1.get()
+    sample1.set(a-b)
+def hello3():
+    a=text1.get()
+    b=text2.get()
+    sample1.set(a/b) 
+def hello4():
+    sample1.set("") 
+tom.resizable(False,False)
+Label(tom,text="Input 1",font=("Aerial",15,"bold"),bg="white").place(x=10 ,y=10)
+Label(tom ,text="Input 2",font=("Aerial",15,"bold"),bg="white").place(x=10,y=100)
+Entry(tom,width=20,textvariable=text1,font=("algerian",20,"bold"),bg="blue").place(x=10,y=50)
+Entry(tom,width=20,textvariable=text2,font=("algerian",20,"bold"),bg="blue").place(x=10,y=150)
+Label(tom,textvariable=sample1,font=("aerial",15,"bold"),width=13,bg="orange").place(x=10,y=190)
+Button(tom,text="add",font=("algerian",16,"bold"),width=13,bg="orange",command=hello).place(x=10,y=300)
+Button(tom,text="multiply",font=("algerian",16,"bold"),width=13,bg="orange",command=hello1).place(x=10,y=350)
+Button(tom,text="divide",font=("algerian",16,"bold"),width=13,bg="orange",command=hello3).place(x=10,y=400)
+Button(tom,text="sub",font=("algerian",16,"bold"),width=13,bg="orange",command=hello2).place(x=10,y=450)
+Button(tom,text="clear",font=("algerian",16,"bold"),width=13,bg="orange",command=hello4).place(x=300,y=400)
+
+tom.mainloop()
