@@ -1,0 +1,26 @@
+def calculate_roots(a, b, c):
+    discriminant = b**2 - 4*a*c
+    if discriminant > 0:
+        root1 = (-b + discriminant ** 0.5) / (2*a)
+        root2 = (-b - discriminant ** 0.5) / (2*a)
+        return root1, root2
+    elif discriminant == 0:
+        root = -b / (2*a)
+        return root, root
+    else:
+        real_part = -b / (2*a)
+        imaginary_part = abs(discriminant) ** 0.5 / (2*a)
+        root1 = complex(real_part, imaginary_part)
+        root2 = complex(real_part, -imaginary_part)
+        return root1, root2
+
+# Example usage
+try:
+    a = float(input("Enter coefficient a: "))
+    b = float(input("Enter coefficient b: "))
+    c = float(input("Enter coefficient c: "))
+
+    root1, root2 = calculate_roots(a, b, c)
+    print(f"Roots: {root1}, {root2}")
+except ValueError:
+    print("Please enter valid numbers for the coefficients.")
