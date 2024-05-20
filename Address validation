@@ -1,0 +1,32 @@
+import math
+
+# Define the Haversine formula to calculate distance between two points on the Earth
+def haversine(lat1, lon1, lat2, lon2):
+    R = 6371.0  # Radius of the Earth in kilometers
+    dlat = math.radians(lat2 - lat1)
+    dlon = math.radians(lon2 - lon1)
+    a = math.sin(dlat / 2) ** 2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    distance = R * c
+    return distance
+
+# Define the restaurant's location (latitude and longitude)
+restaurant_lat = 40.748817  # Example: Latitude of a restaurant in New York City
+restaurant_lon = -73.985428  # Example: Longitude of a restaurant in New York City
+delivery_radius_km = 10  # Delivery radius in kilometers
+
+def is_within_delivery_area(address_lat, address_lon, restaurant_lat, restaurant_lon, delivery_radius_km):
+    distance = haversine(address_lat, address_lon, restaurant_lat, restaurant_lon)
+    return distance <= delivery_radius_km
+
+# Example usage
+try:
+    address_lat = float(input("Enter the latitude of the delivery address: "))
+    address_lon = float(input("Enter the longitude of the delivery address: "))
+
+    if is_within_delivery_area(address_lat, address_lon, restaurant_lat, restaurant_lon, delivery_radius_km):
+        print("The address is within the delivery area.")
+    else:
+        print("The address is outside the delivery area. Please choose another address or opt for pickup.")
+except ValueError:
+    print("Please enter valid numbers for the latitude and longitude.")
