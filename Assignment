@@ -1,0 +1,103 @@
+# Constants for grade points
+GRADE_POINTS = {
+    'O': 10,
+    'A': 9,
+    'B': 8,
+    'C': 7,
+    'D': 6,
+    'U': 0  # Arrear
+}
+
+# Function to get user input for student data
+def get_student_data():
+    students = []
+    for i in range(1, 31):
+        print(f'Enter details for Student {i}:')
+        name = input('Name: ')
+        reg_no = input('Register Number: ')
+        grades = []
+        for j in range(5):
+            grade = input(f'Grade for Subject {j+1} (O, A, B, C, D, U): ').upper()
+            while grade not in GRADE_POINTS:
+                print("Invalid grade. Please enter a valid grade (O, A, B, C, D, U).")
+                grade = input(f'Grade for Subject {j+1} (O, A, B, C, D, U): ').upper()
+            grades.append(grade)
+        students.append((name, reg_no, grades))
+    return students
+
+# 1. Create a File with Student Data
+def create_result_file(file_path, students):
+    with open(file_path, 'w') as file:
+        for student in students:
+            name, reg_no, grades = student
+            total_marks = sum(GRADE_POINTS[grade] for grade in grades)
+            percentage = (total_marks / (5 * 10)) * 100
+            grades_str = ', '.join(grades)
+            file.write(f'{name}, {reg_no}, {grades_str}, {total_marks}, {percentage:.2f}%\n')
+
+# 2. Read and Display File Content
+def read_result_file(file_path):
+    with open(file_path, 'r') as file:
+        for line in file:
+            print(line.strip())
+
+# 3. Analyze Student Data
+def analyze_results(input_file, output_file):
+    analysis = {
+        '90% and above': [],
+        '80% to 89.99%': [],
+        'below 70%': [],
+        'arrear': []
+    }
+    
+    with open(input_file, 'r') as file:
+        for line in file:
+            data = line.strip().split(', ')
+            name, reg_no = data[:2]
+            grades = data[2:7]
+            percentage = float(data[8].replace('%', ''))
+            
+            if 'U' in grades:
+                analysis['arrear'].append(name)
+            elif percentage >= 90:
+                analysis['90% and above'].append(name)
+            elif percentage >= 80:
+                analysis['80% to 89.99%'].append(name)
+            elif percentage < 70:
+                analysis['below 70%'].append(name)
+    
+    with open(output_file, 'w') as file:
+        file.write('Students scoring 90% and above:\n')
+        if analysis['90% and above']:
+            file.write(', '.join(analysis['90% and above']) + '\n')
+        else:
+            file.write('None\n')
+        file.write('\nStudents scoring 80% and above but below 90%:\n')
+        if analysis['80% to 89.99%']:
+            file.write(', '.join(analysis['80% to 89.99%']) + '\n')
+        else:
+            file.write('None\n')
+        file.write('\nStudents scoring below 70%:\n')
+        if analysis['below 70%']:
+            file.write(', '.join(analysis['below 70%']) + '\n')
+        else:
+            file.write('None\n')
+        file.write('\nStudents having arrear:\n')
+        if analysis['arrear']:
+            file.write(', '.join(analysis['arrear']) + '\n')
+        else:
+            file.write('None\n')
+
+# Main function to run the script
+def main():
+    students = get_student_data()
+    create_result_file('result.txt', students)
+    print("\nContents of result.txt:")
+    read_result_file('result.txt')
+    analyze_results('result.txt', 'analysis.txt')
+    print("\nAnalysis written to analysis.txt:")
+    read_result_file('analysis.txt')
+
+# Run the main function
+if __name__ == '__main__':
+    main()
