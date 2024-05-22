@@ -1,0 +1,30 @@
+import tkinter as tk
+from googletrans import Translator
+from googletrans.languages import LANGCODES
+
+# Create the main window
+root = tk.Tk()
+
+# Create a variable to store the selected language
+selected_language = tk.StringVar()
+
+# Create a translator object
+translator = Translator()
+
+# Get the list of languages
+languages = list(LANGCODES.keys())
+
+# Create a dropdown menu
+dropdown = tk.OptionMenu(root, selected_language, *languages)
+dropdown.pack()
+
+# Function to print the selected language
+def print_selected_language():
+    print("Selected language: ", selected_language.get())
+
+# Create a button to print the selected language
+button = tk.Button(root, text="Print Selected Language", command=print_selected_language)
+button.pack()
+
+# Run the main loop
+root.mainloop()
